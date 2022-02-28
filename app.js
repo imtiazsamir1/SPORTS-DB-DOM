@@ -29,9 +29,16 @@ const showPlayerDetail=(players)=>{
     }
     
 };
-const details=(info)=>{
-   const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${info}`;
+const details=(id)=>{
+   const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${id}`;
    fetch(url)
    .then((res)=>res.json())
-   .then((data)=>console.log(data));
+   .then((data)=>setDetails(data.players[0]));
 };
+const setDetails=(info)=>{
+    document.getElementById('details-container').innerHTML=`
+    <div><img src=""alt="">
+    <h1>Name:${info.strPlayer}</h1>
+    </div>
+    `
+}
